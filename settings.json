@@ -1,0 +1,14 @@
+// [VS CODE] Place your settings in this file to overwrite the default settings
+// -> belongs in $HOME/Library/Application Support/Code/User/settings.json
+{
+  "editor.tabSize": 2,
+  "editor.fontSize": 14,
+  "editor.cursorBlinking": "solid",
+  "editor.folding": false,
+  "editor.glyphMargin": false,
+  "workbench.colorTheme": "Dracula",
+  "workbench.iconTheme": "vscode-icons",
+  "eslint.autoFixOnSave": true,
+  "tslint.exclude": ["**/*.js"],
+  "tslint.autoFixOnSave": true
+}
