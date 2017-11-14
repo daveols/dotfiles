@@ -83,9 +83,9 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-export PATH=$PATH:/Users/dave/Library/Android/sdk/platform-tools
+export PATH=$PATH:/Users/satoshi/Library/Android/sdk/platform-tools
 
-export NVM_DIR="/Users/dave/.nvm"
+export NVM_DIR="/Users/satoshi/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
 
 export PATH="$HOME/.fastlane/bin:$PATH"
