@@ -10,5 +10,6 @@
   "workbench.iconTheme": "vscode-icons",
   "eslint.autoFixOnSave": true,
   "tslint.exclude": ["**/*.js"],
-  "tslint.autoFixOnSave": true
+  "tslint.autoFixOnSave": true,
+  "window.zoomLevel": 0
 }
