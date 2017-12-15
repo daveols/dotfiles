@@ -83,6 +83,7 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
+export ANDROID_HOME=/Users/satoshi/Library/Android/sdk
 export PATH=$PATH:/Users/satoshi/Library/Android/sdk/platform-tools
 
 export NVM_DIR="/Users/satoshi/.nvm"
