@@ -6,10 +6,37 @@
   "editor.cursorBlinking": "solid",
   "editor.folding": false,
   "editor.glyphMargin": false,
+  // "editor.formatOnSave": true,
   "workbench.colorTheme": "Dracula",
   "workbench.iconTheme": "vscode-icons",
   "eslint.autoFixOnSave": true,
-  "tslint.exclude": ["**/*.js"],
+  "tslint.exclude": [
+    "**/*.js"
+  ],
   "tslint.autoFixOnSave": true,
-  "window.zoomLevel": 0
+  "flow.useNPMPackagedFlow": true,
+  "javascript.validate.enable": false,
+  "window.zoomLevel": 0,
+  "workbench.activityBar.visible": false,
+  "gitlens.advanced.messages": {
+    "suppressCommitHasNoPreviousCommitWarning": false,
+    "suppressCommitNotFoundWarning": false,
+    "suppressFileNotUnderSourceControlWarning": false,
+    "suppressGitVersionWarning": false,
+    "suppressLineUncommittedWarning": false,
+    "suppressNoRepositoryWarning": false,
+    "suppressResultsExplorerNotice": false,
+    "suppressShowKeyBindingsNotice": true,
+    "suppressUpdateNotice": true,
+    "suppressWelcomeNotice": true
+  },
+  "gitlens.keymap": "alternate",
+  "gitlens.historyExplorer.enabled": true,
+  "files.associations": {
+    "Fastfile": "ruby"
+  },
+  "javascript.updateImportsOnFileMove.enabled": "prompt",
+  "search.location": "sidebar",
+  "vsicons.dontShowNewVersionMessage": true,
+  "typescript.updateImportsOnFileMove.enabled": "never"
 }
