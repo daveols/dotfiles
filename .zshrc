@@ -96,6 +96,8 @@ export PATH="$PATH:$HOME/.rvm/bin"
 
 alias fucking="npm"
 alias bloody="git"
+alias fuck="thefuck"
+
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
