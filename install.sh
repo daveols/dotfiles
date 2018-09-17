@@ -3,7 +3,7 @@
 
 dir=~/dotfiles
 olddir=~/dotfiles_old
-files=".bashrc .tmux.conf .vimrc .zshrc"
+files=".bashrc .tmux.conf .vimrc .zshrc .nvmrc"
 
 ##########
 
