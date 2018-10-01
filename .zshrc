@@ -92,7 +92,7 @@ alias fucking="npm"
 alias bloody="git"
 alias fuck="thefuck"
 
-alias npmp='npm --userconfig=~/.npmrc-personal'
+#alias npmp='npm --userconfig=~/.npmrc-personal'
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
