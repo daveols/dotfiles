@@ -85,8 +85,8 @@ source $ZSH/oh-my-zsh.sh
 
 export ANDROID_HOME=/Users/satoshi/Library/Android/sdk
 export PATH=$PATH:/Users/satoshi/Library/Android/sdk/platform-tools
-
 export PATH="$HOME/.fastlane/bin:$PATH"
+export PATH="$PATH:$(yarn global bin)"
 
 alias npmp='npm --userconfig=~/.npmrc-personal'
 
