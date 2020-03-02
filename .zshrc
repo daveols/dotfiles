@@ -1,11 +1,11 @@
 # Path to your oh-my-zsh installation.
-export ZSH=/Users/satoshi/.oh-my-zsh
+export ZSH=/Users/dave/.oh-my-zsh
 
 # Set name of the theme to load.
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
-ZSH_THEME="dracula"
+ZSH_THEME="random"
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
@@ -83,8 +83,8 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-export ANDROID_HOME=/Users/satoshi/Library/Android/sdk
-export PATH=$PATH:/Users/satoshi/Library/Android/sdk/platform-tools
+export ANDROID_HOME=/Users/dave/Library/Android/sdk
+export PATH=$PATH:/Users/dave/Library/Android/sdk/platform-tools
 export PATH="$HOME/.fastlane/bin:$PATH"
 export PATH="$PATH:$(yarn global bin)"
 
@@ -92,9 +92,11 @@ alias npmp='npm --userconfig=~/.npmrc-personal'
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-export NVM_DIR="/Users/satoshi/.nvm"
+export NVM_DIR="/Users/dave/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
 export PATH="$PATH:$HOME/.rvm/bin"
