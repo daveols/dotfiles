@@ -96,12 +96,7 @@ export NVM_DIR="/Users/dave/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
+export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
+
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
 export PATH="$PATH:$HOME/.rvm/bin"
-
-# tabtab source for serverless package
-# uninstall by removing these lines or running `tabtab uninstall serverless`
-[[ -f /Users/dave/ratebeer/graphql/node_modules/tabtab/.completions/serverless.zsh ]] && . /Users/dave/ratebeer/graphql/node_modules/tabtab/.completions/serverless.zsh
-# tabtab source for sls package
-# uninstall by removing these lines or running `tabtab uninstall sls`
-[[ -f /Users/dave/ratebeer/graphql/node_modules/tabtab/.completions/sls.zsh ]] && . /Users/dave/ratebeer/graphql/node_modules/tabtab/.completions/sls.zsh
