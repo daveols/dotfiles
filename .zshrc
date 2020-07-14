@@ -51,6 +51,7 @@ ZSH_THEME="dracula"
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
     git
+    # autojump
     # zsh-autosuggestions
     # zsh-nvm
 )
@@ -87,22 +88,26 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
+# alias npmp='npm --userconfig=~/.npmrc-personal'
+
 export ANDROID_HOME=/Users/dave/Library/Android/sdk
 export PATH=$PATH:/Users/dave/Library/Android/sdk/platform-tools
 export PATH="$HOME/.fastlane/bin:$PATH"
 export PATH="$PATH:$(yarn global bin)"
 
-# alias npmp='npm --userconfig=~/.npmrc-personal'
-
 # fzf
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 export FZF_DEFAULT_COMMAND='fd --type f'
 
+# yarn
+export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
+
+# flutter
+ export PATH="$PATH:$HOME/flutter/bin"
+
 # export NVM_DIR="/Users/dave/.nvm"
 # [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
 # [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-
-export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
 export PATH="$PATH:$HOME/.rvm/bin"
