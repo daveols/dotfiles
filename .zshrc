@@ -103,7 +103,10 @@ export FZF_DEFAULT_COMMAND='fd --type f'
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 
 # flutter
- export PATH="$PATH:$HOME/flutter/bin"
+export PATH="$PATH:$HOME/flutter/bin"
+
+# pub
+export PATH="$PATH":"$HOME/.pub-cache/bin"
 
 # .local for pipx
 export PATH="$PATH:/Users/dave/.local/bin"
