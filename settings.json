@@ -1,9 +1,11 @@
 // [VS CODE] Place your settings in this file to overwrite the default settings
 // -> belongs in $HOME/Library/Application\ Support/Code/User/settings.json
-
 {
   "editor.tabSize": 2,
+  // "editor.fontLigatures": true,
+  // "editor.fontWeight": "normal",
   "editor.fontSize": 14,
+  "window.zoomLevel": 0,
   // "window.zoomLevel": 1,
   "workbench.activityBar.visible": false,
   "workbench.colorTheme": "Dracula",
@@ -11,5 +13,31 @@
   "editor.folding": false,
   "editor.glyphMargin": false,
   "telemetry.enableTelemetry": false,
-  "editor.formatOnSave": true
+  "prettier.requireConfig": true,
+  "eslint.alwaysShowStatus": true,
+  "eslint.format.enable": true,
+  "javascript.updateImportsOnFileMove.enabled": "never",
+  "[dart]": {
+    "editor.formatOnSave": true,
+    "editor.formatOnType": true,
+    "editor.rulers": [
+      80
+    ],
+    "editor.selectionHighlight": false,
+    "editor.suggest.snippetsPreventQuickSuggestions": false,
+    "editor.suggestSelection": "first",
+    "editor.tabCompletion": "onlySnippets",
+    "editor.wordBasedSuggestions": false
+  },
+  "editor.suggestSelection": "first",
+  "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
+  "editor.formatOnSave": true,
+  "[javascript]": {
+    "editor.defaultFormatter": "dbaeumer.vscode-eslint"
+  },
+  "dart.debugExternalLibraries": false,
+  "dart.debugSdkLibraries": false,
+  "gitlens.advanced.messages": {
+    "suppressLineUncommittedWarning": true
+  }
 }
