@@ -37,5 +37,5 @@
   "dart.debugSdkLibraries": false,
   "gitlens.advanced.messages": {
     "suppressLineUncommittedWarning": true
-  },
+  }
 }
