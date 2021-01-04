@@ -1,11 +1,12 @@
 {
   "editor.tabSize": 2,
-  // "editor.fontLigatures": true,
-  // "editor.fontWeight": "normal",
+  "editor.fontWeight": "normal",
+  "editor.fontFamily": "FiraCode Nerd Font",
+  "editor.fontLigatures": true,
   "editor.fontSize": 14,
   "window.zoomLevel": 0,
   "workbench.activityBar.visible": false,
-  "workbench.colorTheme": "Dracula At Night",
+  "workbench.colorTheme": "Dracula",
   "editor.cursorBlinking": "solid",
   "editor.folding": false,
   "editor.glyphMargin": false,
@@ -36,5 +37,5 @@
   "dart.debugSdkLibraries": false,
   "gitlens.advanced.messages": {
     "suppressLineUncommittedWarning": true
-  }
+  },
 }
