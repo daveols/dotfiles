@@ -1,5 +1,5 @@
 # Path to your oh-my-zsh installation.
-export ZSH=/Users/dave/.oh-my-zsh
+export ZSH=/Users/david/.oh-my-zsh
 
 # Set name of the theme to load.
 # Look in ~/.oh-my-zsh/themes/
@@ -49,12 +49,7 @@ ZSH_THEME="dracula"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(
-    git
-    # autojump
-    # zsh-autosuggestions
-    # zsh-nvm
-)
+plugins=(git)
 
 # User configuration
 
@@ -90,8 +85,8 @@ source $ZSH/oh-my-zsh.sh
 
 # alias npmp='npm --userconfig=~/.npmrc-personal'
 
-export ANDROID_HOME=/Users/dave/Library/Android/sdk
-export PATH=$PATH:/Users/dave/Library/Android/sdk/platform-tools
+export ANDROID_HOME=/Users/david/Library/Android/sdk
+export PATH=$PATH:/Users/david/Library/Android/sdk/platform-tools
 export PATH="$HOME/.fastlane/bin:$PATH"
 export PATH="$PATH:$(yarn global bin)"
 
@@ -103,18 +98,13 @@ export FZF_DEFAULT_COMMAND='fd --type f'
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 
 # flutter
-export PATH="$PATH:$HOME/flutter/bin"
+export PATH="$PATH:$HOME/development/flutter/bin"
 
 # pub
 export PATH="$PATH":"$HOME/.pub-cache/bin"
 
 # .local for pipx
-export PATH="$PATH:/Users/dave/.local/bin"
-
-
-# export NVM_DIR="/Users/dave/.nvm"
-# [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
-# [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+export PATH="$PATH:/Users/david/.local/bin"
 
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
 export PATH="$PATH:$HOME/.rvm/bin"

@@ -1,14 +1,11 @@
-// [VS CODE] Place your settings in this file to overwrite the default settings
-// -> belongs in $HOME/Library/Application\ Support/Code/User/settings.json
 {
   "editor.tabSize": 2,
   // "editor.fontLigatures": true,
   // "editor.fontWeight": "normal",
   "editor.fontSize": 14,
   "window.zoomLevel": 0,
-  // "window.zoomLevel": 1,
   "workbench.activityBar.visible": false,
-  "workbench.colorTheme": "Dracula",
+  "workbench.colorTheme": "Dracula At Night",
   "editor.cursorBlinking": "solid",
   "editor.folding": false,
   "editor.glyphMargin": false,
