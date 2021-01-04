@@ -28,19 +28,20 @@ source ~/.bashrc
 
 #### manual steps
 
-# install zsh or fish
-
-## fish
-# omf install https://github.com/jhillyerd/plugin-git
-
 # install homebrew
 # brew install yarn
 # brew install tmux
 # git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 # tmux && prefix + I for plugins
 
-## git clone git@github.com:challenger-deep-theme/tmux.git ~/.tmux/plugins/challenger-deep
-## git clone git@github.com:dracula/tmux.git ~/.tmux/plugins/dracula
+# install zsh or fish
+
+## fish
+# omf install https://github.com/jhillyerd/plugin-git
+# brew install starship
+
+## ?? git clone git@github.com:challenger-deep-theme/tmux.git ~/.tmux/plugins/challenger-deep
+## ?? git clone git@github.com:dracula/tmux.git ~/.tmux/plugins/dracula
 
 # brew install fzf
 # $(brew --prefix)/opt/fzf/install
