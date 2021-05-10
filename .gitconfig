@@ -7,3 +7,5 @@
 [diff]
     # detect copies as well as renames
     renames = copies
+[pull]
+	ff = only
