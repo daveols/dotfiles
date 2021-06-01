@@ -1,5 +1,7 @@
 {
   "editor.tabSize": 2,
+  "editor.insertSpaces": true,
+  "editor.detectIndentation": true,
   "editor.fontWeight": "normal",
   "editor.fontFamily": "FiraCode Nerd Font",
   "editor.fontLigatures": true,
@@ -37,5 +39,6 @@
   "gitlens.advanced.messages": {
     "suppressLineUncommittedWarning": true
   },
-  "dart.previewLsp": true
+  "dart.previewLsp": true,
+  "omnisharp.useEditorFormattingSettings": false
 }
