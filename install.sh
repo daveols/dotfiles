@@ -30,18 +30,31 @@ source ~/.bashrc
 
 # install homebrew
 # brew install yarn
-# brew install tmux
-# git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
-# tmux && prefix + I for plugins
 
 # install zsh or fish
 
 ## fish
+# brew install fish
+# echo /opt/homebrew/bin/fish | sudo tee -a /etc/shells
+# chsh -s /opt/homebrew/bin/fish
+# curl https://raw.githubusercontent.com/oh-my-fish/oh-my-fish/master/bin/install | fish
 # omf install https://github.com/jhillyerd/plugin-git
 # brew install starship
+
+## Fonts
+# https://www.nerdfonts.com/
+# Enable font in terminal
+
+## tmux
+# brew install tmux
+# git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+# tmux && prefix + I for plugins
 
 ## ?? git clone git@github.com:challenger-deep-theme/tmux.git ~/.tmux/plugins/challenger-deep
 ## ?? git clone git@github.com:dracula/tmux.git ~/.tmux/plugins/dracula
 
 # brew install fzf
 # $(brew --prefix)/opt/fzf/install
+
+## Github
+# ssh-keygen -t rsa -b 4096 -C "10344370+daveols@users.noreply.github.com"
