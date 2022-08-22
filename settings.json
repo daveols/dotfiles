@@ -6,8 +6,7 @@
   "editor.fontFamily": "FiraCode Nerd Font",
   "editor.fontLigatures": true,
   "editor.fontSize": 14,
-  "workbench.activityBar.visible": false,
-  "workbench.colorTheme": "Dracula",
+  "workbench.colorTheme": "Abyss",
   "editor.cursorBlinking": "solid",
   "editor.folding": false,
   "editor.glyphMargin": false,
@@ -32,7 +31,7 @@
   "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
   "editor.formatOnSave": true,
   "[javascript]": {
-    "editor.defaultFormatter": "dbaeumer.vscode-eslint"
+    "editor.defaultFormatter": "vscode.typescript-language-features"
   },
   "dart.debugExternalLibraries": false,
   "dart.debugSdkLibraries": false,
@@ -40,5 +39,7 @@
     "suppressLineUncommittedWarning": true
   },
   "dart.previewLsp": true,
-  "omnisharp.useEditorFormattingSettings": false
+  "omnisharp.useEditorFormattingSettings": false,
+  "python.defaultInterpreterPath": "/usr/bin/python3"
+  // "omnisharp.useModernNet": true
 }
