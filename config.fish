@@ -2,6 +2,7 @@ set -x PATH $PATH $HOME/Library/Python/3.8/bin
 
 set -x --universal FLUTTERPATH $HOME/code/flutter
 set -x PATH $PATH $FLUTTERPATH/bin
+set -x PATH $PATH $HOME/.pub-cache/bin
 
 set -x --universal ANDROID_HOME $HOME/Library/Android/sdk
 set -x PATH $PATH $ANDROID_HOME/platform-tools

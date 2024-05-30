@@ -1,5 +1,4 @@
 {
-  "editor.tabSize": 2,
   "editor.insertSpaces": true,
   "editor.detectIndentation": true,
   "editor.fontWeight": "normal",
@@ -14,7 +13,6 @@
   "prettier.requireConfig": true,
   "eslint.alwaysShowStatus": true,
   "eslint.format.enable": true,
-  "javascript.updateImportsOnFileMove.enabled": "never",
   "[dart]": {
     "editor.formatOnSave": true,
     "editor.formatOnType": true,
@@ -25,7 +23,7 @@
     "editor.suggest.snippetsPreventQuickSuggestions": false,
     "editor.suggestSelection": "first",
     "editor.tabCompletion": "onlySnippets",
-    "editor.wordBasedSuggestions": false
+    "editor.wordBasedSuggestions": "off"
   },
   "editor.suggestSelection": "first",
   "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
@@ -34,12 +32,26 @@
     "editor.defaultFormatter": "vscode.typescript-language-features"
   },
   "dart.debugExternalLibraries": false,
-  "dart.debugSdkLibraries": false,
+  "dart.debugSdkLibraries": true,
   "gitlens.advanced.messages": {
     "suppressLineUncommittedWarning": true
   },
   "dart.previewLsp": true,
   "omnisharp.useEditorFormattingSettings": false,
-  "python.defaultInterpreterPath": "/usr/bin/python3"
+  "python.defaultInterpreterPath": "/usr/bin/python3",
+  "editor.inlineSuggest.enabled": true,
+  "github.copilot.enable": {
+    "*": true,
+    "yaml": true,
+    "plaintext": false,
+    "markdown": false
+  },
+  "[typescriptreact]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[typescript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "dart.debugExternalPackageLibraries": true
   // "omnisharp.useModernNet": true
 }
