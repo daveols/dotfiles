@@ -52,6 +52,10 @@
   "[typescript]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
-  "dart.debugExternalPackageLibraries": true
+  "dart.debugExternalPackageLibraries": true,
   // "omnisharp.useModernNet": true
+  "editor.codeActionsOnSave": {
+    "source.fixAll": "explicit",
+    "source.dcm.fixAll": "explicit"
+  }
 }
