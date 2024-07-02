@@ -4,7 +4,7 @@
 
 dir=~/dotfiles
 olddir=~/dotfiles_old
-files=".bashrc .tmux.conf .vimrc .zshrc .nvmrc .gitconfig"
+files=".bashrc .tmux.conf .vimrc .zshrc .gitconfig"
 
 echo "Creating $olddir for backup of any existing dotfiles"
 mkdir -p $olddir
@@ -16,15 +16,16 @@ for file in $files; do
     ln -s $dir/$file ~/$file
 done
 
-mv ~/.config/fish/config.fish ~/dotfiles_old/
-ln -s $dir/config.fish ~/.config/fish/config.fish
+# if using fish:
+# mv ~/.config/fish/config.fish ~/dotfiles_old/
+# ln -s $dir/config.fish ~/.config/fish/config.fish
 
 mv ~/Library/Application\ Support/Code/User/settings.json ~/dotfiles_old/
 ln -s $dir/settings.json ~/Library/Application\ Support/Code/User/settings.json
 
 echo "Done"
 
-source ~/.bashrc
+source ~/.zshrc
 
 #### manual steps
 

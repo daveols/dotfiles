@@ -1,1 +1,5 @@
-[ -f ~/.fzf.bash ] && source ~/.fzf.bash
+# fish
+# [ -f ~/.fzf.bash ] && source ~/.fzf.bash
+
+# zsh
+source ~/.zshrc
