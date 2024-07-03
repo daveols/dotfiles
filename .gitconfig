@@ -1,6 +1,7 @@
 [user]
 	name = daveols
 	email = 10344370+daveols@users.noreply.github.com
+	signingKey = DFDFB871520AF834
 [merge]
     # include summaries of merged commits in newly created merge commit messages
     log = true
@@ -9,3 +10,7 @@
     renames = copies
 [pull]
 	ff = only
+[commit]
+	gpgsign = true
+[gpg]
+	program = gpg

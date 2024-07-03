@@ -115,6 +115,9 @@ export PATH="$HOME/Library/Android/sdk/platform-tools:$PATH"
 # flutter
 export PATH="$HOME/development/flutter/bin:$PATH"
 
+# gpg
+export GPG_TTY=$(tty)
+
 
 # export PATH="$HOME/.fastlane/bin:$PATH"
 # export PATH="$PATH:$(yarn global bin)"
