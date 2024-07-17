@@ -114,10 +114,14 @@ export PATH="$HOME/Library/Android/sdk/platform-tools:$PATH"
 
 # flutter
 export PATH="$HOME/development/flutter/bin:$PATH"
+export PATH="$HOME/.pub-cache/bin:$PATH"
 
 # gpg
 export GPG_TTY=$(tty)
 
+# rbenv
+export PATH="$HOME/.rbenv/bin:$PATH" 
+eval "$(rbenv init - zsh)"
 
 # export PATH="$HOME/.fastlane/bin:$PATH"
 # export PATH="$PATH:$(yarn global bin)"
@@ -137,3 +141,9 @@ export GPG_TTY=$(tty)
 
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
 # export PATH="$PATH:$HOME/.rvm/bin"
+
+## [Completion]
+## Completion scripts setup. Remove the following line to uninstall
+[[ -f /Users/david/.dart-cli-completion/zsh-config.zsh ]] && . /Users/david/.dart-cli-completion/zsh-config.zsh || true
+## [/Completion]
+
