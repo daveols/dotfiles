@@ -123,6 +123,12 @@ export GPG_TTY=$(tty)
 export PATH="$HOME/.rbenv/bin:$PATH" 
 eval "$(rbenv init - zsh)"
 
+# wireshark
+export PATH=$PATH:/Applications/Wireshark.app/Contents/MacOS/extcap
+
+# goose
+export PATH="$PATH:/Users/david/.local/bin"
+
 # export PATH="$HOME/.fastlane/bin:$PATH"
 # export PATH="$PATH:$(yarn global bin)"
 
@@ -142,11 +148,19 @@ eval "$(rbenv init - zsh)"
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
 # export PATH="$PATH:$HOME/.rvm/bin"
 
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+# NOTE(daveols): Disabled nvm in favor of Volta for Node.js management
+# export NVM_DIR="$HOME/.nvm"
+# [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+# [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+# Volta - Node.js version manager
+export VOLTA_HOME="$HOME/.volta"
+export PATH="$VOLTA_HOME/bin:$PATH"
 
 ## [Completion]
 ## Completion scripts setup. Remove the following line to uninstall
 [[ -f /Users/david/.dart-cli-completion/zsh-config.zsh ]] && . /Users/david/.dart-cli-completion/zsh-config.zsh || true
 ## [/Completion]
+
+# SSH agent fix for Yubikey
+alias fix-ssh='eval "$(ssh-agent -s)" && ssh-add ~/.ssh/id_ecdsa_sk'
