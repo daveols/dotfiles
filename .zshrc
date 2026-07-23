@@ -108,13 +108,16 @@ source $ZSH/oh-my-zsh.sh
 # homebrew
 export PATH="/opt/homebrew/bin:$PATH"
 
-# android
-export ANDROID_HOME="$HOME/Library/Android/sdk"
-export PATH="$HOME/Library/Android/sdk/platform-tools:$PATH"
-
-# flutter
-export PATH="$HOME/development/flutter/bin:$PATH"
-export PATH="$HOME/.pub-cache/bin:$PATH"
+# flutter / android (mobile dev — dormant unless installed on this machine)
+if [ -d "$HOME/development/flutter/bin" ]; then
+  export PATH="$HOME/development/flutter/bin:$PATH"
+  export PATH="$HOME/.pub-cache/bin:$PATH"
+fi
+if [ -d "$HOME/Library/Android/sdk" ]; then
+  export ANDROID_HOME="$HOME/Library/Android/sdk"
+  export PATH="$ANDROID_HOME/platform-tools:$PATH"
+fi
+[[ -f "$HOME/.dart-cli-completion/zsh-config.zsh" ]] && . "$HOME/.dart-cli-completion/zsh-config.zsh"
 
 # gpg
 export GPG_TTY=$(tty)
@@ -127,48 +130,9 @@ if command -v rbenv >/dev/null 2>&1; then
   eval "$(rbenv init - zsh)"
 fi
 
-# wireshark
-export PATH=$PATH:/Applications/Wireshark.app/Contents/MacOS/extcap
-
-# goose
-export PATH="$PATH:/Users/david/.local/bin"
-
-# export PATH="$HOME/.fastlane/bin:$PATH"
-# export PATH="$PATH:$(yarn global bin)"
-
-# fzf
-# [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-# export FZF_DEFAULT_COMMAND='fd --type f'
-
-# yarn
-# export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
-
-# pub
-# export PATH="$PATH":"$HOME/.pub-cache/bin"
-
-# .local for pipx
-# export PATH="$PATH:/Users/david/.local/bin"
-
-# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
-# export PATH="$PATH:$HOME/.rvm/bin"
-
-# NOTE(daveols): Disabled nvm in favor of Volta for Node.js management
-# export NVM_DIR="$HOME/.nvm"
-# [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-# [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-
-# Volta - Node.js version manager
-export VOLTA_HOME="$HOME/.volta"
-export PATH="$VOLTA_HOME/bin:$PATH"
-
-## [Completion]
-## Completion scripts setup. Remove the following line to uninstall
-[[ -f /Users/david/.dart-cli-completion/zsh-config.zsh ]] && . /Users/david/.dart-cli-completion/zsh-config.zsh || true
-## [/Completion]
-
-# SSH agent fix for Yubikey (only on machines that have the key)
-if [ -f ~/.ssh/id_ed25519_sk ]; then
-  alias fix-ssh='eval "$(ssh-agent -s)" && ssh-add ~/.ssh/id_ed25519_sk'
+# fzf (keybindings: Ctrl-R history, Ctrl-T files; completion)
+if command -v fzf >/dev/null 2>&1 && [ -t 0 ]; then
+  source <(fzf --zsh)
 fi
 
 # Machine-specific config (untracked) — PATH tweaks, secrets, local aliases.

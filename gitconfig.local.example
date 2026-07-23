@@ -1,0 +1,13 @@
+# Copy to ~/.gitconfig.local and adjust per machine. Not tracked — it's
+# included by .gitconfig and holds anything machine-specific.
+#
+# On a YubiKey machine (enables hardware-backed commit signing):
+[user]
+	signingkey = 8BCD729C7FB0C911
+[commit]
+	gpgsign = true
+[gpg]
+	program = gpg
+#
+# On a machine without the YubiKey: don't copy this file at all —
+# commits simply won't be signed, and nothing breaks.

@@ -1,61 +1,92 @@
 #!/bin/bash
-
-# This script backs up old dotfiles then creates sym links to the files in this repo
+# Bootstrap a new Mac from this dotfiles repo. Idempotent — safe to re-run.
+#
+#   ./install.sh             # base setup (any machine)
+#   ./install.sh --yubikey   # base + YubiKey tooling (machines used with the key)
+#
+set -u
 
 dir=~/dotfiles
 olddir=~/dotfiles_old
-files=".bashrc .tmux.conf .vimrc .zshrc .gitconfig"
+files=".vimrc .zshrc .gitconfig"
 
-echo "Creating $olddir for backup of any existing dotfiles"
+with_yubikey=false
+[ "${1:-}" = "--yubikey" ] && with_yubikey=true
+
+# --- 1. Homebrew ------------------------------------------------------------
+if ! command -v brew >/dev/null 2>&1 && [ ! -x /opt/homebrew/bin/brew ] && [ ! -x /usr/local/bin/brew ]; then
+  echo "==> Installing Homebrew (you'll be asked for your password)"
+  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+fi
+# Put brew on PATH for the rest of this script (Apple Silicon or Intel).
+if [ -x /opt/homebrew/bin/brew ]; then
+  eval "$(/opt/homebrew/bin/brew shellenv)"
+elif [ -x /usr/local/bin/brew ]; then
+  eval "$(/usr/local/bin/brew shellenv)"
+fi
+
+# --- 2. Core packages (any machine) ------------------------------------------
+echo "==> Installing core packages"
+brew install gh openssh fzf
+brew install --cask ghostty visual-studio-code
+
+# --- 3. oh-my-zsh -------------------------------------------------------------
+if [ ! -d ~/.oh-my-zsh ]; then
+  echo "==> Installing oh-my-zsh"
+  # Guards: don't switch shell, don't launch zsh, don't clobber our .zshrc symlink.
+  RUNZSH=no CHSH=no KEEP_ZSHRC=yes \
+    sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+fi
+
+# --- 4. Symlink dotfiles -------------------------------------------------------
+echo "==> Linking dotfiles (existing files back up to $olddir)"
 mkdir -p $olddir
-
 cd $dir
-
 for file in $files; do
-    mv ~/$file $olddir
-    ln -s $dir/$file ~/$file
+  # Skip if already correctly linked; back up anything else that's in the way.
+  if [ "$(readlink ~/$file 2>/dev/null)" = "$dir/$file" ]; then
+    continue
+  fi
+  [ -e ~/$file ] && mv ~/$file $olddir/
+  ln -sfn $dir/$file ~/$file
 done
 
-# if using fish:
-# mv ~/.config/fish/config.fish ~/dotfiles_old/
-# ln -s $dir/config.fish ~/.config/fish/config.fish
+# VS Code settings (create the dir — it only appears after first launch otherwise).
+vscode_user=~/Library/Application\ Support/Code/User
+mkdir -p "$vscode_user"
+if [ "$(readlink "$vscode_user/settings.json" 2>/dev/null)" != "$dir/settings.json" ]; then
+  [ -e "$vscode_user/settings.json" ] && mv "$vscode_user/settings.json" $olddir/
+  ln -sfn $dir/settings.json "$vscode_user/settings.json"
+fi
 
-mv ~/Library/Application\ Support/Code/User/settings.json ~/dotfiles_old/
-ln -s $dir/settings.json ~/Library/Application\ Support/Code/User/settings.json
+# --- 5. YubiKey machines only (--yubikey) --------------------------------------
+if $with_yubikey; then
+  echo "==> Installing YubiKey tooling"
+  brew install ykman gnupg pinentry-mac
+  brew install --cask yubico-authenticator
 
-echo "Done"
+  echo "==> Configuring gpg-agent to use pinentry-mac"
+  mkdir -p ~/.gnupg && chmod 700 ~/.gnupg
+  echo "pinentry-program $(brew --prefix)/bin/pinentry-mac" > ~/.gnupg/gpg-agent.conf
+  gpgconf --kill gpg-agent 2>/dev/null
 
-source ~/.zshrc
+  cat <<'STEPS'
 
-#### manual steps
+  YubiKey manual steps (with the key inserted):
+    1. Commit signing:
+         curl -fsSL https://github.com/daveols.gpg | gpg --import
+         gpg --card-status
+         cp ~/dotfiles/gitconfig.local.example ~/.gitconfig.local
+    2. SSH (the key is resident on the YubiKey):
+         cd ~/.ssh && ssh-keygen -K       # prompts FIDO2 PIN + touch
+         mv id_ed25519_sk_rk id_ed25519_sk
+         mv id_ed25519_sk_rk.pub id_ed25519_sk.pub
+         printf 'Host *\n  IdentityFile ~/.ssh/id_ed25519_sk\n' >> ~/.ssh/config
+    3. GitHub auth: gh auth login
+STEPS
+fi
 
-# install homebrew
-# brew install yarn
-
-# install zsh or fish
-
-## fish
-# brew install fish
-# echo /opt/homebrew/bin/fish | sudo tee -a /etc/shells
-# chsh -s /opt/homebrew/bin/fish
-# curl https://raw.githubusercontent.com/oh-my-fish/oh-my-fish/master/bin/install | fish
-# omf install https://github.com/jhillyerd/plugin-git
-# brew install starship
-
-## Fonts
-# https://www.nerdfonts.com/
-# Enable font in terminal
-
-## tmux
-# brew install tmux
-# git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
-# tmux && prefix + I for plugins
-
-## ?? git clone git@github.com:challenger-deep-theme/tmux.git ~/.tmux/plugins/challenger-deep
-## ?? git clone git@github.com:dracula/tmux.git ~/.tmux/plugins/dracula
-
-# brew install fzf
-# $(brew --prefix)/opt/fzf/install
-
-## Github
-# ssh-keygen -t rsa -b 4096 -C "10344370+daveols@users.noreply.github.com"
+# --- Done -----------------------------------------------------------------------
+echo
+echo "Done. Restart your shell (or open a new tab) to pick everything up."
+echo "Machine-specific extras go in ~/.zshrc.local and ~/.gitconfig.local (untracked)."
