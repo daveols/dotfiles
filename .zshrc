@@ -119,9 +119,13 @@ export PATH="$HOME/.pub-cache/bin:$PATH"
 # gpg
 export GPG_TTY=$(tty)
 
-# rbenv
-export PATH="$HOME/.rbenv/bin:$PATH" 
-eval "$(rbenv init - zsh)"
+# rbenv (only if installed)
+if [ -d "$HOME/.rbenv/bin" ]; then
+  export PATH="$HOME/.rbenv/bin:$PATH"
+fi
+if command -v rbenv >/dev/null 2>&1; then
+  eval "$(rbenv init - zsh)"
+fi
 
 # wireshark
 export PATH=$PATH:/Applications/Wireshark.app/Contents/MacOS/extcap
@@ -162,5 +166,10 @@ export PATH="$VOLTA_HOME/bin:$PATH"
 [[ -f /Users/david/.dart-cli-completion/zsh-config.zsh ]] && . /Users/david/.dart-cli-completion/zsh-config.zsh || true
 ## [/Completion]
 
-# SSH agent fix for Yubikey
-alias fix-ssh='eval "$(ssh-agent -s)" && ssh-add ~/.ssh/id_ecdsa_sk'
+# SSH agent fix for Yubikey (only on machines that have the key)
+if [ -f ~/.ssh/id_ed25519_sk ]; then
+  alias fix-ssh='eval "$(ssh-agent -s)" && ssh-add ~/.ssh/id_ed25519_sk'
+fi
+
+# Machine-specific config (untracked) — PATH tweaks, secrets, local aliases.
+[ -f ~/.zshrc.local ] && source ~/.zshrc.local

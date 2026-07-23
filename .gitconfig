@@ -1,7 +1,6 @@
 [user]
 	name = daveols
 	email = 10344370+daveols@users.noreply.github.com
-	signingkey = 8BCD729C7FB0C911
 [merge]
     # include summaries of merged commits in newly created merge commit messages
     log = true
@@ -10,13 +9,13 @@
     renames = copies
 [pull]
 	ff = only
-[commit]
-	gpgsign = true
-[gpg]
-	program = gpg
 [credential "https://github.com"]
 	helper = 
 	helper = !/opt/homebrew/bin/gh auth git-credential
 [credential "https://gist.github.com"]
-	helper = 
+	helper =
 	helper = !/opt/homebrew/bin/gh auth git-credential
+[include]
+	# Machine-specific config (signing keys etc.) — not tracked in dotfiles.
+	# See README for the expected contents per machine.
+	path = ~/.gitconfig.local
