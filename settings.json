@@ -9,9 +9,8 @@
   "editor.cursorBlinking": "solid",
   "editor.folding": false,
   "editor.glyphMargin": false,
-  "telemetry.enableTelemetry": false,
+  "telemetry.telemetryLevel": "off",
   "prettier.requireConfig": true,
-  "eslint.alwaysShowStatus": true,
   "eslint.format.enable": true,
   "[dart]": {
     "editor.formatOnSave": true,
@@ -26,7 +25,6 @@
     "editor.wordBasedSuggestions": "off"
   },
   "editor.suggestSelection": "first",
-  "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
   "editor.formatOnSave": true,
   "[javascript]": {
     "editor.defaultFormatter": "vscode.typescript-language-features"
@@ -36,8 +34,6 @@
   "gitlens.advanced.messages": {
     "suppressLineUncommittedWarning": true
   },
-  "dart.previewLsp": true,
-  "omnisharp.useEditorFormattingSettings": false,
   "python.defaultInterpreterPath": "/usr/bin/python3",
   "editor.inlineSuggest.enabled": true,
   "github.copilot.enable": {
@@ -53,7 +49,6 @@
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
   "dart.debugExternalPackageLibraries": true,
-  // "omnisharp.useModernNet": true
   "editor.codeActionsOnSave": {
     "source.fixAll": "explicit",
     "source.dcm.fixAll": "explicit"

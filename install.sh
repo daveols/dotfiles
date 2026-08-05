@@ -1,8 +1,8 @@
 #!/bin/bash
 # Bootstrap a new Mac from this dotfiles repo. Idempotent — safe to re-run.
 #
-#   ./install.sh             # base setup (any machine)
-#   ./install.sh --yubikey   # base + YubiKey tooling (machines used with the key)
+#   ./install.sh work        # work machine: core + YubiKey tooling
+#   ./install.sh personal    # personal machine: core + personal apps, no YubiKey
 #
 set -u
 
@@ -10,8 +10,11 @@ dir=~/dotfiles
 olddir=~/dotfiles_old
 files=".vimrc .zshrc .gitconfig"
 
-with_yubikey=false
-[ "${1:-}" = "--yubikey" ] && with_yubikey=true
+profile="${1:-}"
+case "$profile" in
+  work|personal) ;;
+  *) echo "Usage: ./install.sh work|personal"; exit 1 ;;
+esac
 
 # --- 1. Homebrew ------------------------------------------------------------
 if ! command -v brew >/dev/null 2>&1 && [ ! -x /opt/homebrew/bin/brew ] && [ ! -x /usr/local/bin/brew ]; then
@@ -25,10 +28,11 @@ elif [ -x /usr/local/bin/brew ]; then
   eval "$(/usr/local/bin/brew shellenv)"
 fi
 
-# --- 2. Core packages (any machine) ------------------------------------------
+# --- 2. Core packages (both profiles) ----------------------------------------
+# JS runtimes etc. are deliberately NOT here — install per project/machine.
 echo "==> Installing core packages"
-brew install gh openssh fzf
-brew install --cask ghostty visual-studio-code
+brew install gh fzf
+brew install --cask --adopt ghostty visual-studio-code
 
 # --- 3. oh-my-zsh -------------------------------------------------------------
 if [ ! -d ~/.oh-my-zsh ]; then
@@ -59,13 +63,14 @@ if [ "$(readlink "$vscode_user/settings.json" 2>/dev/null)" != "$dir/settings.js
   ln -sfn $dir/settings.json "$vscode_user/settings.json"
 fi
 
-# --- 5. YubiKey machines only (--yubikey) --------------------------------------
-if $with_yubikey; then
-  echo "==> Installing YubiKey tooling"
-  brew install ykman gnupg pinentry-mac
-  brew install --cask yubico-authenticator
+# --- 5a. Work profile: YubiKey tooling ------------------------------------------
+if [ "$profile" = "work" ]; then
+  echo "==> [work] Installing YubiKey tooling"
+  # brew openssh: Apple's build lacks FIDO2 support, needed for the sk SSH key.
+  brew install openssh ykman gnupg pinentry-mac
+  brew install --cask --adopt yubico-authenticator
 
-  echo "==> Configuring gpg-agent to use pinentry-mac"
+  echo "==> [work] Configuring gpg-agent to use pinentry-mac"
   mkdir -p ~/.gnupg && chmod 700 ~/.gnupg
   echo "pinentry-program $(brew --prefix)/bin/pinentry-mac" > ~/.gnupg/gpg-agent.conf
   gpgconf --kill gpg-agent 2>/dev/null
@@ -86,7 +91,21 @@ if $with_yubikey; then
 STEPS
 fi
 
+# --- 5b. Personal profile: apps, no YubiKey --------------------------------------
+if [ "$profile" = "personal" ]; then
+  echo "==> [personal] Installing personal apps"
+  brew install --cask --adopt brave-browser rectangle caffeine claude chatgpt
+
+  cat <<'STEPS'
+
+  Personal manual steps:
+    1. GitHub auth: gh auth login        (HTTPS; no SSH key needed)
+    2. No YubiKey on this machine: skip ~/.gitconfig.local — commits are
+       simply unsigned, nothing breaks.
+STEPS
+fi
+
 # --- Done -----------------------------------------------------------------------
 echo
-echo "Done. Restart your shell (or open a new tab) to pick everything up."
+echo "Done ($profile). Restart your shell (or open a new tab) to pick everything up."
 echo "Machine-specific extras go in ~/.zshrc.local and ~/.gitconfig.local (untracked)."

@@ -8,13 +8,22 @@ machine-specific lives in untracked `~/.zshrc.local` / `~/.gitconfig.local`.
 ```sh
 git clone https://github.com/daveols/dotfiles.git ~/dotfiles
 cd ~/dotfiles && chmod +x install.sh
-./install.sh              # any machine
-./install.sh --yubikey    # machines used with the YubiKey
+./install.sh work         # work machine: core + YubiKey tooling
+./install.sh personal     # personal machine: core + personal apps, no YubiKey
 ```
 
-The script is idempotent: it installs Homebrew, core packages
-(`gh openssh fzf` + Ghostty, VS Code), oh-my-zsh, and symlinks the
-dotfiles (existing files are backed up to `~/dotfiles_old`).
+The script is idempotent. Both profiles get: Homebrew, `gh` + `fzf`,
+Ghostty, VS Code, oh-my-zsh, and the dotfile symlinks (existing files are
+backed up to `~/dotfiles_old`).
+
+- **work** adds the YubiKey stack (`openssh ykman gnupg pinentry-mac`,
+  Yubico Authenticator, gpg-agent config) and prints the on-card key
+  recovery steps. Work-managed apps (Office, Teams, VPN…) are IT's
+  problem, not dotfiles'.
+- **personal** adds Brave, Rectangle, Caffeine, Claude, ChatGPT. No
+  YubiKey: skip `~/.gitconfig.local` and commits are simply unsigned.
+  JS runtimes (node/pnpm/bun/…) are deliberately per-project — install
+  what each machine needs, when it needs it.
 
 ## Per-machine files (untracked)
 
@@ -26,15 +35,11 @@ dotfiles (existing files are backed up to `~/dotfiles_old`).
 - `~/.ssh/config` — `IdentityFile ~/.ssh/id_ed25519_sk` on YubiKey machines
   (needs Homebrew OpenSSH; Apple's build has no FIDO2 support).
 
-## YubiKey notes
+## YubiKey notes (work machines)
 
-- GPG key `8BCD729C7FB0C911` lives on the key (public half:
-  `curl https://github.com/daveols.gpg`). Expiry runs to 2028-07-22 —
-  extend with `gpg --quick-set-expire <fpr> 2y` (+ subkey fprs) and
-  re-upload to GitHub when it lapses.
+- The commit-signing GPG key lives on the YubiKey; only the public half
+  is ever imported (`curl https://github.com/daveols.gpg`). When it nears
+  expiry: `gpg --quick-set-expire <fpr> 2y` (primary + subkey fprs), then
+  re-upload the public key to GitHub.
 - The SSH key is a **resident** ed25519-sk credential — recover it on any
   machine with `ssh-keygen -K`.
-- OpenPGP User PIN: 3 tries before lockout. FIDO2 PIN: 8 tries.
-- No TOTP accounts are stored on the key; website 2FA is FIDO2/WebAuthn.
-- **If the key is lost, signing + SSH + 2FA go with it** — keep a backup
-  key registered on critical accounts.

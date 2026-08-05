@@ -11,10 +11,10 @@
 	ff = only
 [credential "https://github.com"]
 	helper = 
-	helper = !/opt/homebrew/bin/gh auth git-credential
+	helper = !gh auth git-credential
 [credential "https://gist.github.com"]
 	helper =
-	helper = !/opt/homebrew/bin/gh auth git-credential
+	helper = !gh auth git-credential
 [include]
 	# Machine-specific config (signing keys etc.) — not tracked in dotfiles.
 	# See README for the expected contents per machine.
